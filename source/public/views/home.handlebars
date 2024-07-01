@@ -1,0 +1,51 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Task Manager</title>
+        <link rel="stylesheet" href="/css/style.css" />
+    </head>
+    <body class="light_theme">
+        {{! <span id="filter_detail"> Currently Showing All </span> }}
+        <div id="home-container">
+            <h1>ToDoList</h1>
+            <div class="button-container-primary">
+
+                <button id="open-form" class="main_button">Create todo</button>
+
+                <div id="theme-toggle-container">
+                    <button id="theme-toggle" class="main_button">Toggle Theme</button>
+                </div>
+
+            </div>
+
+            <div class="button-container-secondary">
+                <div class="left-buttons">
+                    <button id="sort-by-title" class="main_button">Sort by Title</button>
+                    <button id="sort-by-dueDate" class="main_button">Sort by Due
+                        Date</button>
+                    <button id="sort-by-importance" class="main_button">Sort by
+                        Importance</button>
+                    <button id="sort-by-creationDate" class="main_button">Sort
+                        by Creation Date</button>
+                    <span id="sort-status"></span>
+                </div>
+                <div class="right-button">
+                    <span id="filter-status"></span>
+                    <button
+                        id="filter-completed"
+                        class="main_button"
+                        data-filter="all"
+                    >Filter </button>
+                </div>
+
+            </div>
+
+            <div id="todo-lists"></div>
+
+        </div>
+        <div id="form-container" style="display: none;"></div>
+
+        <script src="/js/script.js"></script>
+    </body>
+</html>

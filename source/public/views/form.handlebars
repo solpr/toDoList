@@ -1,0 +1,35 @@
+<div id="task-form-container">
+    <form id="task-form">
+          <h1>ToDoList Form </h1>
+          <br>
+          
+        <div>
+            <label for="title">Title:</label>
+            <input type="text" id="title" class="wide_input" name="title" required />
+        </div>
+        <div>
+            <label for="dueDate">Due Date:</label>
+            <input type="date" id="dueDate" class="wide_input" name="dueDate" />
+        </div>
+        <div>
+            <label for="importance">Importance:</label>
+            <input type="number" id="importance" class="wide_input" name="importance" min="1" max="5" required />
+        </div>
+
+        <div>
+            <input type="checkbox" id="completed" name="completed" />
+            <label for="completed">Finished:</label>
+            <br>
+            <br>
+        </div>
+
+        <div>
+            <label for="description">Description:</label>
+            <textarea id="description" class="wide_input" name="description" required></textarea>
+        </div>
+        <input type="hidden" id="taskId" name="taskId" />
+        <button type="submit" class="main_button">Submit</button>
+        <button type="submit" class="main_button">Submit and overview</button>
+        <a href="#" id="return-to-home" class="main_button">Overview</a>
+    </form>
+</div>

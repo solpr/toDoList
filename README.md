@@ -1,14 +1,7 @@
 # toDoList
 
-| Solomon Araya | Year 2024|
-
-## Guide
-- install it using [npm install]
-- start the app using [npm start]
-- on your browser and open  [http://localhost:3000/]
-
 Die Vorlage beinhaltet CSS/HTML/JS-Linter. Diese sind konfiguriert. 
-##
+
 Getting Started
 1. Entzippen von der Vorlage.
 2. Installieren Sie die Dependencies der Vorlage
