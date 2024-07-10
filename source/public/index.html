@@ -1,0 +1,147 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Task Manager</title>
+        <link rel="stylesheet" href="../css/style.css" />
+
+        <script src="./js/res/handlebars.min.js"></script>
+        <script src="./js/res/moment.min.js"></script>
+
+    </head>
+
+    <body class="light_theme">
+        <div id="home-container">
+            <h1>ToDoList</h1>
+            <div class="button-container-primary">
+                <button id="open-form" class="main_button">Create todo</button>
+
+                <div id="theme-toggle-container">
+                    <button id="theme-toggle" class="main_button">
+                        Toggle Theme
+                    </button>
+                </div>
+            </div>
+
+            <div class="button-container-secondary">
+                <div class="left-buttons">
+                    <button id="sort-by-title" class="main_button">
+                        Sort by Title
+                    </button>
+                    <button id="sort-by-dueDate" class="main_button">
+                        Sort by Due Date
+                    </button>
+                    <button id="sort-by-importance" class="main_button">
+                        Sort by Importance
+                    </button>
+                    <button id="sort-by-creationDate" class="main_button">
+                        Sort by Creation Date
+                    </button>
+                    <span id="sort-status"></span>
+                </div>
+                <div class="right-button">
+                    <span id="filter-status"></span>
+                    <button
+                        id="filter-completed"
+                        class="main_button"
+                        data-filter="all"
+                    >
+                        Filter
+                    </button>
+                </div>
+            </div>
+
+            <div id="todo-lists"></div>
+        </div>
+        <div id="form-container" style="display: none"></div>
+
+        <script id="todo-list-template" type="text/x-handlebars-template">
+            <div class="row_container" id="{{this._id}}">
+                <div class="raw_container_content">
+                    <div class="input-container">
+                        <div class="input-group">
+                            <p class="input_text_{{this.theme}}">
+                                {{#relativeTime this.dueDate}}{{/relativeTime}}
+                            </p>
+                            <p class="input_text_{{this.theme}}">
+                                {{#if this.completed}}
+                                    <input
+                                        type="checkbox"
+                                        id="state"
+                                        name="state"
+                                        disabled
+                                        checked
+                                    />
+                                    Completed
+                                {{else}}
+                                    <input
+                                        type="checkbox"
+                                        id="state"
+                                        name="state"
+                                        disabled
+                                    />
+                                    Open
+                                {{/if}}
+                            </p>
+                        </div>
+                        <div class="sub-group">
+                            <p class="input_text_{{this.theme}}">
+                                {{this.title}}
+                            </p>
+                            <p class="input_text_{{this.theme}}">
+                                {{this.description}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="edit-container">
+                        <span id="mytext3" class="input_text_{{this.theme}}">
+                            {{#importance this.importance}}{{/importance}}
+                        </span>
+                        {{#if (isOlderThanADay this.creationDate)}}
+                            <a class="main_button delete-task">
+                                Delete
+                            </a>
+                        {{/if}}
+                        <a class="main_button edit-task">
+                            Edit
+                        </a>
+                    </div>
+                </div>
+                <hr />
+                <br />
+            </div>
+        </script>
+        <script id="form-template" type="text/x-handlebars-template">
+            <div id="task-form-container">
+              <form data-method="{{#if this.edit}}put{{else}}POST{{/if}}">
+                <label for="title">Title: </label>
+                <input type="text" id="title" class="wide_input" name="title" placeholder="Enter Title..." {{#if this.edit}}
+                  value="{{this.title}}" {{/if}} required />
+                <label for="important">Importance: </label>
+                <input type="number" id="important" class="wide_input" name="important" placeholder="" max="5" min="0" {{#if
+                  this.edit}} value="{{this.importance}}" {{/if}} required />
+                <label for="due_date">Due Date</label>
+                <input type="date" id="due_date" name="due_date" class="wide_input" {{#if this.edit}} value="{{this.dueDate}}" {{/if}}
+                   />
+                <br />
+                <input type="checkbox" id="completed" name="completed" value="true" {{#if this.edit}}{{#if
+                  this.completed}}checked{{/if}}{{/if}} />
+                <label for="completed">Finished </label>
+                <br />
+                <label for="description">Description</label>
+                <textarea id="description" name="description" class="wide_input" rows="6"
+                  >{{#if this.edit}}{{this.description}}{{/if}}</textarea>
+                <br />
+        <input type="hidden" id="taskId" name="taskId" value="{{#if this.edit}}{{this.edit}}{{/if}}"  />
+                <button class="main_button" id="save" type="submit"> {{#if this.edit}} Update {{else}} Create {{/if}}</button>
+                <button class="main_button" id="saveOverview" type="submit">
+                {{#if this.edit}} Update & Overview {{else}} Create &
+                  Overview {{/if}} </button>
+                <a class="main_button" id="overviewTask"> Overview </a>
+              </form>
+            </div>
+        </script>
+
+        <script type="module" src="../js/index.js"></script>
+    </body>
+</html>
