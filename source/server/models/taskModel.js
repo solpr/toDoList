@@ -1,59 +1,29 @@
-import Datastore from "nedb";
-const db = new Datastore({ filename: "source/server/data/tasks.db", autoload: true });
+import Datastore from "nedb-promises";
 
-export const createTask = (task) => {
-    return new Promise((resolve, reject) => {
-        db.insert(task, (err, newTask) => {
-            if (err) reject(err);
-            else resolve(newTask);
-        });
-    });
+const db = Datastore.create({
+    filename: "source/server/data/tasks.db",
+    autoload: true,
+});
+
+export const createTask = async (task) => {
+    return await db.insert(task);
 };
 
-export const updateTask = (id, task) => {
-    return new Promise((resolve, reject) => {
-        db.update({ _id: id }, { $set: task }, {}, (err, numUpdated) => {
-            if (err) reject(err);
-            else resolve(numUpdated);
-        });
-    });
+export const updateTask = async (id, task) => {
+    return await db.update({ _id: id }, { $set: task });
 };
 
-export const getTasks = () => {
-    return new Promise((resolve, reject) => {
-        db.find({}, (err, tasks) => {
-            if (err) reject(err);
-            else resolve(tasks);
-        });
-    });
+export const getTasks = async () => {
+    return await db.find({});
 };
 
-export const deleteTask = (id) => {
-    return new Promise((resolve, reject) => {
-        db.remove({ _id: id }, {}, (err, numRemoved) => {
-            if (err) reject(err);
-            else resolve(numRemoved);
-        });
-    });
+export const deleteTask = async (id) => {
+    return await db.remove({ _id: id });
 };
 
-
-export const getTaskById = (id) => {
-    return new Promise((resolve, reject) => {
-        db.findOne({ _id: id }, (err, task) => {
-            if (err) {
-                reject(err);
-            } else {
-                if (task) {
-                    resolve(task);
-                } else {
-                    resolve(null);
-                }
-            }
-        });
-    });
+export const getTaskById = async (id) => {
+    return await db.findOne({ _id: id });
 };
-
 
 export const sortTasks = (tasks, sortBy, order = "asc") => {
     return tasks.sort((a, b) => {

@@ -52,3 +52,32 @@ export const hideAlert = () => {
         alertContainer.remove();
     }
 };
+
+
+export const renderTasks = (tasks, deleteTask) => {
+    const taskList = document.getElementById("todo-lists");
+
+    if (taskList) {
+        taskList.addEventListener("click", async (e) => {
+            if (e.target.classList.contains("delete-task")) {
+                const taskId = e.target.closest(".row_container").id;
+                const newTasks = await deleteTask(taskId);
+                if (newTasks) renderTasks(newTasks, deleteTask);
+            }
+        });
+    }
+
+    taskList.innerHTML = "";
+    if (tasks.length === 0) {
+        showAlert("No tasks found.");
+    } else {
+        hideAlert();
+
+        const theme = localStorage.getItem("theme");
+
+        tasks.forEach((task) => {
+            const taskElement = createTaskElement({ theme: theme, ...task });
+            taskList.appendChild(taskElement);
+        });
+    }
+};
