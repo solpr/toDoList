@@ -1,7 +1,15 @@
 {"title":"launch the new product","description":"this is a critical steep","dueDate":"2024-09-11","creationDate":"2024-03-10T20:56:07.722Z","importance":5,"completed":false,"_id":"1MIcbjAf42daguC1"}
 {"title":"go to the hackathon ","description":"it's a good learning experience.","dueDate":"2024-07-22","creationDate":"2024-07-10T20:56:07.722Z","importance":2,"completed":false,"_id":"3jdTnN11h07YrIaF"}
 {"title":"test the update","description":"test the new update","dueDate":"2024-07-12","importance":3,"completed":false,"creationDate":"2024-07-10T21:35:10.464Z","_id":"5543SOxMztz6A5xg"}
-{"title":"push project n to github","description":"i need to push the code to the rep asap","dueDate":"","importance":4,"completed":false,"_id":"Ujpuf3kxZDwdsqUD"}
+{"title":"test 2","description":"2","dueDate":"0002-02-22","importance":2,"completed":false,"creationDate":"2024-03-12T13:18:01.935Z","_id":"S0nlZZTaxFSvMhCw"}
+{"title":"push project n to github","description":"i need to push the code to the rep asap","dueDate":"","importance":1,"completed":false,"_id":"Ujpuf3kxZDwdsqUD"}
 {"title":"prepare the update","description":"inform your team ","dueDate":"2024-07-03","creationDate":"2024-04-10T20:56:07.722Z","importance":4,"completed":true,"_id":"UrXLJ5N9hztT0e1S"}
-{"title":"launch the new product","description":"this is a critical steep","dueDate":"2024-09-11","creationDate":"2024-03-10T20:56:07.722Z","importance":4,"completed":false,"_id":"1MIcbjAf42daguC1"}
-{"title":"launch the new product","description":"this is a critical steep","dueDate":"2024-09-11","creationDate":"2024-03-10T20:56:07.722Z","importance":5,"completed":false,"_id":"1MIcbjAf42daguC1"}
+{"title":"test 5","description":"3","dueDate":"0003-04-01","importance":3,"completed":true,"creationDate":"2024-03-12T13:18:30.182Z","_id":"knVg4XNRFW8dIQdQ"}
+{"title":"test 3","description":"3","dueDate":"0003-04-01","importance":3,"completed":true,"creationDate":"2024-03-12T13:18:30.182Z","_id":"knVg4XNRFW8dIQqQ"}
+{"title":"test 6","description":"3","dueDate":"0003-04-01","importance":3,"completed":true,"creationDate":"2024-03-12T13:18:30.182Z","_id":"knVg4XNRFW8dIQsQ"}
+{"$$deleted":true,"_id":"S0nlZZTaxFSvMhCw"}
+{"$$deleted":true,"_id":"knVg4XNRFW8dIQdQ"}
+{"title":"test 7","description":"7","dueDate":"0003-04-01","importance":5,"completed":true,"creationDate":"2024-03-12T13:18:30.182Z","_id":"knVg4XNRFW8dIQsQ"}
+{"$$deleted":true,"_id":"knVg4XNRFW8dIQsQ"}
+{"$$deleted":true,"_id":"knVg4XNRFW8dIQqQ"}
+{"title":"check site analytics","description":"check1 the site analytics and prepare a report","dueDate":"2024-07-12","importance":4,"completed":true,"creationDate":"2024-07-12T13:34:31.026Z","_id":"qH7xxtgUTtVDQihb"}

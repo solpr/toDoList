@@ -1,11 +1,12 @@
-import { initializeHandlebars } from "../utility/helpers.js";
-import { fetchTasks } from "./home.js";
+import { initializeHandlebars, renderTasks } from "../utility/helpers.js";
+import { fetchTasks, fetchTheTask, saveTask, deleteTask } from "../model/index.js";
 
 const formContainer = document.getElementById("form-container");
 const homeContainer = document.getElementById("home-container");
 const openFormButton = document.getElementById("open-form");
 
 initializeHandlebars();
+
 const formTemplateSource = document.getElementById("form-template").innerHTML;
 const formTemplate = Handlebars.compile(formTemplateSource);
 
@@ -31,7 +32,13 @@ const displayFormTemplate = (task = {}) => {
                     localStorage.getItem("sortOrder") || "asc";
                 const initialFilterBy =
                     localStorage.getItem("filterBy") || "all";
-                fetchTasks(initialSortBy, initialFilterBy, initialSortOrder);
+                fetchTasks(
+                    initialSortBy,
+                    initialFilterBy,
+                    initialSortOrder
+                ).then((response) => {
+                    if (response) renderTasks(response, deleteTask);
+                });
             });
         }
     };
@@ -72,11 +79,7 @@ if (taskList) {
 }
 
 export const editTask = async (taskId) => {
-    const response = await fetch(`/api/tasks/${taskId}`);
-    if (!response.ok) {
-        return;
-    }
-    const task = await response.json();
+    const task = await fetchTheTask(taskId);
     displayFormTemplate(task);
 };
 
@@ -89,8 +92,6 @@ const handleFormSubmit = async (e) => {
     const theMethod = theForm.getAttribute("data-method");
 
     const taskId = formData.get("taskId");
-
-    const url = taskId ? `/api/tasks/${taskId}` : "/api/tasks";
 
     const extractTaskData = (formData) => ({
         title: formData.get("title"),
@@ -109,15 +110,9 @@ const handleFormSubmit = async (e) => {
               creationDate: new Date().toISOString(),
           };
 
-    const response = await fetch(url, {
-        method: theMethod,
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(bodyJson),
-    });
+    const success = await saveTask(bodyJson, taskId);
 
-    if (response.ok) {
+    if (success) {
         const overviewButton = document.getElementById("overviewTask");
         if (e.submitter.id === "saveOverview") {
             overviewButton.click();
